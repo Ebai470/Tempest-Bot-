@@ -1,0 +1,240 @@
+{
+  "misterioso": {
+    "file": "misterioso.ogg",
+    "type": "audio",
+    "mimetype": "audio/ogg; codecs=opus",
+    "ptt": false,
+    "updatedAt": "2026-09-25T09:34:13.500Z"
+  },
+  "verdadeoudesafio": {
+    "file": "verdadeoudesafio.ogg",
+    "type": "audio",
+    "mimetype": "audio/ogg; codecs=opus",
+    "ptt": false,
+    "updatedAt": "2026-09-25T09:54:58.680Z"
+  },
+  "vod": {
+    "file": "vod.ogg",
+    "type": "audio",
+    "mimetype": "audio/ogg; codecs=opus",
+    "ptt": false,
+    "updatedAt": "2026-09-25T09:54:58.684Z"
+  },
+  "verdade": {
+    "file": "verdade.ogg",
+    "type": "audio",
+    "mimetype": "audio/ogg; codecs=opus",
+    "ptt": false,
+    "updatedAt": "2026-09-25T09:54:58.687Z"
+  },
+  "desafio": {
+    "file": "desafio.ogg",
+    "type": "audio",
+    "mimetype": "audio/ogg; codecs=opus",
+    "ptt": false,
+    "updatedAt": "2026-09-25T09:54:58.690Z"
+  },
+  "oi": {
+    "file": "oi.ogg",
+    "type": "audio",
+    "mimetype": "audio/ogg; codecs=opus",
+    "ptt": false,
+    "updatedAt": "2026-09-25T09:58:29.703Z"
+  },
+  "ola": {
+    "file": "ola.ogg",
+    "type": "audio",
+    "mimetype": "audio/ogg; codecs=opus",
+    "ptt": false,
+    "updatedAt": "2026-09-25T09:58:29.706Z"
+  },
+  "hey": {
+    "file": "hey.ogg",
+    "type": "audio",
+    "mimetype": "audio/ogg; codecs=opus",
+    "ptt": false,
+    "updatedAt": "2026-09-25T09:58:29.709Z"
+  },
+  "talarico": {
+    "file": "talarico.ogg",
+    "type": "audio",
+    "mimetype": "audio/ogg; codecs=opus",
+    "ptt": false,
+    "updatedAt": "2026-09-25T09:58:59.668Z"
+  },
+  "gado": {
+    "file": "gado.ogg",
+    "type": "audio",
+    "mimetype": "audio/ogg; codecs=opus",
+    "ptt": false,
+    "updatedAt": "2026-09-25T09:59:22.856Z"
+  },
+  "pobre": {
+    "file": "pobre.ogg",
+    "type": "audio",
+    "mimetype": "audio/ogg; codecs=opus",
+    "ptt": false,
+    "updatedAt": "2026-09-25T09:59:48.733Z"
+  },
+  "safadeza": {
+    "file": "safadeza.ogg",
+    "type": "audio",
+    "mimetype": "audio/ogg; codecs=opus",
+    "ptt": false,
+    "updatedAt": "2026-09-25T10:02:46.396Z"
+  },
+  "confiante": {
+    "file": "confiante.ogg",
+    "type": "audio",
+    "mimetype": "audio/ogg; codecs=opus",
+    "ptt": false,
+    "updatedAt": "2026-09-25T10:03:45.259Z"
+  },
+  "musica": {
+    "file": "musica.ogg",
+    "type": "audio",
+    "mimetype": "audio/ogg; codecs=opus",
+    "ptt": false,
+    "updatedAt": "2026-09-25T10:04:15.698Z"
+  },
+  "music": {
+    "file": "music.ogg",
+    "type": "audio",
+    "mimetype": "audio/ogg; codecs=opus",
+    "ptt": false,
+    "updatedAt": "2026-09-25T10:04:15.700Z"
+  },
+  "som": {
+    "file": "som.ogg",
+    "type": "audio",
+    "mimetype": "audio/ogg; codecs=opus",
+    "ptt": false,
+    "updatedAt": "2026-09-25T10:04:15.701Z"
+  },
+  "urbano": {
+    "file": "urbano.ogg",
+    "type": "audio",
+    "mimetype": "audio/ogg; codecs=opus",
+    "ptt": false,
+    "updatedAt": "2026-09-25T10:05:18.198Z"
+  },
+  "beta": {
+    "file": "beta.ogg",
+    "type": "audio",
+    "mimetype": "audio/ogg; codecs=opus",
+    "ptt": false,
+    "updatedAt": "2026-09-25T10:05:36.557Z"
+  },
+  "tchau": {
+    "file": "tchau.ogg",
+    "type": "audio",
+    "mimetype": "audio/ogg; codecs=opus",
+    "ptt": false,
+    "updatedAt": "2026-09-25T10:05:50.363Z"
+  },
+  "bye": {
+    "file": "bye.ogg",
+    "type": "audio",
+    "mimetype": "audio/ogg; codecs=opus",
+    "ptt": false,
+    "updatedAt": "2026-09-25T10:05:50.367Z"
+  },
+  "gay": {
+    "file": "gay.ogg",
+    "type": "audio",
+    "mimetype": "audio/ogg; codecs=opus",
+    "ptt": false,
+    "updatedAt": "2026-09-25T10:06:22.336Z"
+  },
+  "rainha": {
+    "file": "rainha.ogg",
+    "type": "audio",
+    "mimetype": "audio/ogg; codecs=opus",
+    "ptt": false,
+    "updatedAt": "2026-09-25T10:07:18.146Z"
+  },
+  "resgatarcodigo": {
+    "file": "resgatarcodigo.ogg",
+    "type": "audio",
+    "mimetype": "audio/ogg; codecs=opus",
+    "ptt": false,
+    "updatedAt": "2026-09-25T10:08:28.695Z"
+  },
+  "redeem": {
+    "file": "redeem.ogg",
+    "type": "audio",
+    "mimetype": "audio/ogg; codecs=opus",
+    "ptt": false,
+    "updatedAt": "2026-09-25T10:08:28.699Z"
+  },
+  "usarcodigo": {
+    "file": "usarcodigo.ogg",
+    "type": "audio",
+    "mimetype": "audio/ogg; codecs=opus",
+    "ptt": false,
+    "updatedAt": "2026-09-25T10:08:28.705Z"
+  },
+  "ativarcodigo": {
+    "file": "ativarcodigo.ogg",
+    "type": "audio",
+    "mimetype": "audio/ogg; codecs=opus",
+    "ptt": false,
+    "updatedAt": "2026-09-25T10:08:28.709Z"
+  },
+  "aluguel": {
+    "file": "aluguel.ogg",
+    "type": "audio",
+    "mimetype": "audio/ogg; codecs=opus",
+    "ptt": false,
+    "updatedAt": "2026-09-25T10:08:45.365Z"
+  },
+  "planosaluguel": {
+    "file": "planosaluguel.ogg",
+    "type": "audio",
+    "mimetype": "audio/ogg; codecs=opus",
+    "ptt": false,
+    "updatedAt": "2026-09-25T10:08:45.368Z"
+  },
+  "precosaluguel": {
+    "file": "precosaluguel.ogg",
+    "type": "audio",
+    "mimetype": "audio/ogg; codecs=opus",
+    "ptt": false,
+    "updatedAt": "2026-09-25T10:08:45.370Z"
+  },
+  "rent": {
+    "file": "rent.ogg",
+    "type": "audio",
+    "mimetype": "audio/ogg; codecs=opus",
+    "ptt": false,
+    "updatedAt": "2026-09-25T10:08:45.373Z"
+  },
+  "zueiro": {
+    "file": "zueiro.ogg",
+    "type": "audio",
+    "mimetype": "audio/ogg; codecs=opus",
+    "ptt": false,
+    "updatedAt": "2026-09-25T10:09:53.775Z"
+  },
+  "tradicional": {
+    "file": "tradicional.ogg",
+    "type": "audio",
+    "mimetype": "audio/ogg; codecs=opus",
+    "ptt": false,
+    "updatedAt": "2026-09-25T10:11:00.263Z"
+  },
+  "rir": {
+    "file": "rir.mp3",
+    "type": "audio",
+    "mimetype": "audio/mpeg",
+    "ptt": false,
+    "updatedAt": "2026-10-18T00:14:22.353Z"
+  },
+  "timmy": {
+    "file": "timmy.mp3",
+    "type": "audio",
+    "mimetype": "audio/mpeg",
+    "ptt": false,
+    "updatedAt": "2026-10-19T22:32:43.658Z"
+  }
+}

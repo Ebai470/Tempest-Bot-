@@ -1,0 +1,53 @@
+const NEEDS_RE = /\b(respond[aeo]r?|marqu[ea]r?|marc[ae]r?|mencion[ae]r?|cita(r|da|do)?|reply)\b/i;
+const TOGGLE_RE = /\bon\s*[\/|]\s*off\b/i;
+const tgStore = new Map();
+const PREF = (ctx) => (ctx && ctx.prefix && String(ctx.prefix).trim()) || (config.prefixes && config.prefixes[0]) || '!';
+function needsTarget(t) { const s = String(t || ''); return s.length <= 700 && NEEDS_RE.test(s); }
+function isToggle(e, text) {
+  const s = String(text || '');
+  if (TOGGLE_RE.test(s) || TOGGLE_RE.test(String(e.usage || ''))) return true;
+  return e.category === 'seguranca' && s.length < 500 && /\b(des)?ativad[oa]s?\b/i.test(s) && !isError(s);
+}
+
+function pickButtons(ctx, e, text) {
+  const nav = [btn.reply('🏠 Menu', 'mn:home'), btn.channel('📢 Canal')];
+  if (NAV_ONLY.test(e.name)) return nav;
+  if (isToggle(e, text)) {
+    const tg = token();
+    tgStore.set(tg, { name: e.name, ts: Date.now() });
+    if (tgStore.size > 600) tgStore.delete(tgStore.keys().next().value);
+    return [btn.reply('✅ Ativar', 'ux:tg:' + tg + ':on'), btn.reply('🚫 Desativar', 'ux:tg:' + tg + ':off')].concat(nav);
+  }
+  const usage = e.usage || (PREF(ctx) + e.name);
+  const wantsTarget = needsTarget(text);
+  if (isUsage(text) || wantsTarget) {
+    const code = wantsTarget
+      ? PREF(ctx) + e.name + (/marq|marc|mencion|@/i.test(text) ? ' @' : '')
+      : String(usage).split('\n')[0].replace(/<[^>]*>|\[[^\]]*\]/g, '').trim() + ' ';
+    return [btn.copy('📋 Copiar comando', code)].concat(nav);
+  }
+  const canRepeat = !isError(text) && !NO_REPEAT_CATS.has(e.category) && !e.adminOnly && !e.ownerOnly && !NO_REPEAT_NAME.test(e.name) && ctx.msg && ctx.msg.message;
+  if (canRepeat) {
+    const tk = token();
+    store.set(tk, { msg: ctx.msg, sender: ctx.sender, ts: Date.now() });
+    if (store.size > 800) store.delete(store.keys().next().value);
+    return [btn.reply('🔁 Repetir', 'ux:rep:' + tk)].concat(nav);
+  }
+  return nav;
+}
+
+// ✅ Ativar / 🚫 Desativar: roda "!comando on|off" com as mesmas checagens do bot (so admin consegue)
+async function toggle(ctx, parts, deps) {
+  const say = (t) => ctx.sock.sendMessage(ctx.jid, { text: t });
+  const j = tgStore.get(parts[1]);
+  if (!j) return say('⌛ Esse botão expirou. Use o comando de novo.');
+  if (!deps || typeof deps.reinject !== 'function') return say('Use: ' + PREF(ctx) + j.name + ' ' + (parts[2] === 'on' ? 'on' : 'off'));
+  const o = ctx.msg;
+  const fake = {
+    key: { remoteJid: ctx.jid, fromMe: false, id: 'TP' + Date.now().toString(16) + Math.random().toString(16).slice(2, 8).toUpperCase(), participant: o && o.key && o.key.participant },
+    message: { conversation: PREF(ctx) + j.name + ' ' + (parts[2] === 'on' ? 'on' : 'off') }, pushName: o && o.pushName, messageTimestamp: Math.floor(Date.now() / 1000)
+  };
+  if (o && o.key && o.key.participantPn) fake.key.participantPn = o.key.participantPn;
+  return deps.reinject(fake);
+}
+

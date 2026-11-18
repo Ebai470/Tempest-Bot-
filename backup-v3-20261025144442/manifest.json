@@ -1,0 +1,22 @@
+{
+  "saved": [
+    "src/utils/audioFilters.js",
+    "src/utils/quotedMedia.js",
+    "src/commands/utilidades/extras_ia_pesquisa.js",
+    "src/commands/stickers/figextras.js",
+    "src/commands/audio/audiofx.js",
+    "src/index.js",
+    "src/utils/menu.js",
+    "src/commands/utilidades/menudownload.js",
+    "src/commands/utilidades/menumodos.js",
+    "src/commands/utilidades/menuPesquisa.js",
+    "src/commands/diversao/jogosWeb.js"
+  ],
+  "created": [
+    "src/utils/menuStyle.js",
+    "src/utils/groupPrefix.js",
+    "src/interactive/prefixSelect.js",
+    "src/commands/utilidades/prefixo.js",
+    "src/commands/utilidades/audiofx.js"
+  ]
+}

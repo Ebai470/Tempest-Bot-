@@ -1,0 +1,10 @@
+'use strict';
+// Silencia o spam do libsignal (imprimia a sessão inteira a cada mensagem e deixava o Termux lento).
+if (!console.__quietSignal) {
+  console.__quietSignal = true;
+  const NOISE = /^(Closing session|Closing open session|Opening session|Removing old closed session|Migrating session|Session already closed|Session already open|Decrypted message with closed session)/;
+  ['log', 'info', 'warn'].forEach(function (m) {
+    const o = console[m].bind(console);
+    console[m] = function () { const a = arguments; if (typeof a[0] === 'string' && NOISE.test(a[0])) return; return o.apply(null, a); };
+  });
+}

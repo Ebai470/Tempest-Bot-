@@ -1,0 +1,96 @@
+
+node_modules/
+.env
+.env.*
+session/
+session*/
+sessions/
+auth_info/
+auth_info_baileys/
+pairing-*/
+backup-*/
+backups-*/
+tempest-backup*.tar.gz
+tempest-pre-update*.tar.gz
+*.log
+logs/
+tmp/
+creds.json
+
+# WhatsApp sessions
+sessao/
+sessao*/
+session*/
+session-tempest*/
+pairing-new/
+pairing-test-session*/
+pairing-test-session2/
+
+# Backups
+backup*/
+backups*/
+*-backup*/
+v3-ultimo-backup/
+
+# Runtime
+*.log
+logs/
+tmp/
+
+# Dados privados e bases de dados
+/data/
+/tempest-bot/
+*.db
+*.db-*
+*.sqlite
+*.sqlite3
+*.sqlite-*
+*.json.bak
+
+# Credenciais
+**/.env
+**/.env.*
+**/creds.json
+
+# Permitir modelo de configuracao
+!.env.example
+
+
+# Arquivos temporarios e backups antigos
+*.zip
+*.tar.gz
+.v3-ultimo-backup/
+package.json.antes-baileys
+
+# Backups dentro do codigo
+src/*BACKUP*
+src/**/*BACKUP*
+src/*.bak*
+src/**/*.bak*
+src/*.before-*
+src/**/*.before-*
+
+# Dados dinamicos: nao publicar
+/data/*
+!/data/command-audio/
+!/data/command-audio/**
+!/data/command-media/
+!/data/command-media/**
+
+# Nunca publicar banco de dados ou sessoes
+*.db
+*.db-*
+*.sqlite
+*.sqlite3
+*.sqlite-*
+.env
+.env.*
+!.env.example
+
+# Liberar a pasta principal e apenas os recursos estaticos
+!/data/
+ /data/*
+!/data/command-audio/
+!/data/command-audio/**
+!/data/command-media/
+!/data/command-media/**

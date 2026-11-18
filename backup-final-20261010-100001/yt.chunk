@@ -1,0 +1,31 @@
+// TP_YT: tenta varios clientes do YouTube (idade/login) + cookies.txt
+let ytNode = true;
+function cookiesArgs() {
+  const c = getEnv('YT_COOKIES') || path.join(process.cwd(), 'cookies.txt');
+  try { if (fs.existsSync(c)) return ['--cookies', c]; } catch (_) {}
+  return [];
+}
+const YT_TRIES = [[], ['--extractor-args', 'youtube:player_client=tv_embedded'], ['--extractor-args', 'youtube:player_client=android_vr'], ['--extractor-args', 'youtube:player_client=ios'], ['--extractor-args', 'youtube:player_client=mweb']];
+const isYt = (u) => /(?:youtube\.com|youtu\.be|youtube-nocookie\.com)/i.test(String(u || ''));
+async function runDl(url, args, timeoutMs, watch) {
+  if (!isYt(url)) return run(args, timeoutMs, watch);
+  let lastErr = null;
+  const base = cookiesArgs();
+  for (let i = 0; i < YT_TRIES.length; i++) {
+    const extra = (ytNode ? ['--js-runtimes', 'node'] : []).concat(base, YT_TRIES[i]);
+    try { return await run(extra.concat(args), timeoutMs, watch); }
+    catch (e) {
+      lastErr = e;
+      const m = String(e.message || '');
+      if (/kill|SIGKILL/i.test(m)) throw e;
+      if (ytNode && /no such option|unrecognized arguments|js-runtimes/i.test(m)) { ytNode = false; i--; continue; }
+      if (/Private video|Video unavailable|has been removed|copyright|not available in your country|members-only/i.test(m) && !/sign in|age/i.test(m)) break;
+    }
+  }
+  const m = String((lastErr && lastErr.message) || '');
+  if (/confirm your age|sign in to confirm|not a bot|--cookies/i.test(m)) {
+    throw new Error('O YouTube pediu login/idade para este vídeo. Coloque um arquivo cookies.txt do YouTube na pasta do bot e tente de novo (e atualize: pip install -U "yt-dlp[default]").');
+  }
+  throw lastErr || new Error('Falha ao baixar');
+}
+

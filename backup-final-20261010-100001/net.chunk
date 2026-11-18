@@ -1,0 +1,54 @@
+// TP_NET2: 3 servicos de traducao (GET), com motivo da falha no log
+function getJson(host, pathq) {
+  return new Promise((resolve, reject) => {
+    const req = https.get({ hostname: host, path: pathq, timeout: 7000, headers: { 'User-Agent': 'Mozilla/5.0 (Linux; Android 13) AppleWebKit/537.36 Chrome/120 Mobile Safari/537.36', Accept: '*/*' } }, (res) => {
+      const ch = []; res.on('data', (c) => ch.push(c));
+      res.on('end', () => {
+        if (res.statusCode !== 200) return reject(new Error(host + ' HTTP ' + res.statusCode));
+        try { resolve(JSON.parse(Buffer.concat(ch).toString('utf8'))); } catch (e) { reject(new Error(host + ' resposta invalida')); }
+      });
+    });
+    req.on('error', (e) => reject(new Error(host + ' ' + (e && e.code || e.message))));
+    req.on('timeout', () => { req.destroy(); reject(new Error(host + ' timeout')); });
+  });
+}
+async function gtx(text, tl) {
+  const errs = [], q = encodeURIComponent(text);
+  try { const j = await getJson('translate.googleapis.com', '/translate_a/single?client=gtx&sl=auto&tl=' + tl + '&dt=t&q=' + q); const t = j[0].map((x) => x[0]).join(''); if (t) return t; } catch (e) { errs.push(e.message); }
+  try {
+    const j = await getJson('clients5.google.com', '/translate_a/t?client=dict-chrome-ex&sl=auto&tl=' + tl + '&q=' + q);
+    const t = (j && j.sentences) ? j.sentences.map((x) => x.trans).join('') : (Array.isArray(j) ? (Array.isArray(j[0]) ? j[0][0] : j[0]) : '');
+    if (t && typeof t === 'string') return t;
+  } catch (e) { errs.push(e.message); }
+  try { const j = await getJson('api.mymemory.translated.net', '/get?q=' + q + '&langpair=pt|' + tl); const t = j && j.responseData && j.responseData.translatedText; if (t && Number(j.responseStatus) === 200) return t; errs.push('mymemory ' + (j && j.responseStatus)); } catch (e) { errs.push(e.message); }
+  throw new Error(errs.join(' | '));
+}
+let lastLog = 0;
+
+// fallback: traduz so os pedacos de texto e mantem comandos/links/@ como estao
+async function trSegments(core, lang) {
+  const re = /(https?:\/\/\S+|@\d{5,}|`[^`]*`|(?:^|\s)[!.\/#][\p{L}\p{N}_]{2,}|tempest(?: bot)?)/giu;
+  const parts = core.split(re);
+  const out = [];
+  for (let i = 0; i < parts.length; i++) {
+    const p = parts[i];
+    if (i % 2 === 1 || !/\p{L}/u.test(p || '')) { out.push(p || ''); continue; }
+    const lead = p.match(/^\s*/)[0], trail = p.match(/\s*$/)[0];
+    const t = await callTranslate(p.trim(), lang);
+    out.push(lead + String(t).trim() + trail);
+  }
+  return out.join('');
+}
+
+async function testTranslate(ctx) {
+  pausedUntil = 0; fails = 0;
+  const send = (ctx.sock.__rawSend || ctx.sock.sendMessage).bind(ctx.sock);
+  const to = getLang(ctx.jid) === 'pt' ? 'en' : getLang(ctx.jid);
+  try {
+    const t = await callTranslate('Olá, tudo bem?', to);
+    return send(ctx.jid, { text: '✅ Tradução funcionando (' + to + ')\nOlá, tudo bem? → ' + t });
+  } catch (e) {
+    return send(ctx.jid, { text: '❌ A tradução falhou.\nMotivo: ' + String(e.message).slice(0, 300) + '\n\nConfira a internet do Termux e tente de novo.' });
+  }
+}
+
