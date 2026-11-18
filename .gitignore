@@ -5,3 +5,4 @@ tmp/
 *.old-*
 *.bak*
 *BACKUP*
+/tempest-bot/
